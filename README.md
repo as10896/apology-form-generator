@@ -1,5 +1,5 @@
 # Apology Form Generator
-For the motivation behind this project, please refer to [this post](https://www.ptt.cc/bbs/BaseballXXXX/M.1728961890.A.1CE.html).
+For the motivation behind this project, please refer to <a href="https://www.ptt.cc/bbs/BaseballXXXX/M.1728961890.A.1CE.html" target="_blank">this post</a>.
 
 ## Demo
 ![demo](demo.gif)

@@ -131,3 +131,94 @@ canvas {
     height: auto;
   }
 }
+
+footer {
+  background-color: #333;
+  color: #ddd;
+  padding: 20px 0;
+}
+
+footer a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+  /* Make the links stand out on hover */
+}
+
+footer .list-inline {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  /* Horizontally center the text in the list */
+}
+
+footer .list-inline-item a {
+  font-size: 14px;
+}
+
+footer .text-center p {
+  font-size: 12px;
+  color: #aaa;
+  /* Subtle color for copyright text */
+}
+
+/* Modal Styling */
+.modal-content {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: none;
+  background-color: #34495e;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.modal-body {
+  background-color: #2c3e50;
+}
+
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.modal-body a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.modal-body a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.btn-close-white {
+  filter: invert(1);
+}
+
+.modal-footer {
+  border-top: none;
+  background-color: #34495e;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.btn-close {
+  color: #ecf0f1;
+}
+
+.btn-close:hover {
+  color: #ffffff;
+}
