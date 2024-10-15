@@ -22,7 +22,7 @@
 h3,
 h5 {
   color: #003366;
-  /* Dark blue color */
+  /* Dark blue color for headings */
 }
 
 .form-check-input {
@@ -32,7 +32,7 @@ h5 {
 
 #addCheckbox {
   background-color: #666666;
-  /* A serious, muted dark grey */
+  /* Dark grey for the "Add Checkbox" button */
   color: white;
   padding: 10px;
   border: none;
@@ -70,7 +70,6 @@ canvas {
 }
 
 .delete-checkbox {
-  visibility: visible;
   cursor: pointer;
   color: #b3b3b3;
   transition: color 0.3s ease;
@@ -147,24 +146,16 @@ footer a {
 footer a:hover {
   color: #fff;
   text-decoration: underline;
-  /* Make the links stand out on hover */
 }
 
 footer .list-inline {
   padding: 0;
   margin: 0;
   text-align: center;
-  /* Horizontally center the text in the list */
 }
 
 footer .list-inline-item a {
   font-size: 14px;
-}
-
-footer .text-center p {
-  font-size: 12px;
-  color: #aaa;
-  /* Subtle color for copyright text */
 }
 
 /* Modal Styling */
@@ -177,20 +168,8 @@ footer .text-center p {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.modal-header {
-  border-bottom: none;
-  background-color: #34495e;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
 .modal-body {
   background-color: #2c3e50;
-}
-
-.modal-body img {
-  max-width: 100%;
-  height: auto;
 }
 
 .modal-body a {
@@ -202,21 +181,6 @@ footer .text-center p {
 .modal-body a:hover {
   color: #ffffff;
   text-decoration: underline;
-}
-
-.btn-close-white {
-  filter: invert(1);
-}
-
-.modal-footer {
-  border-top: none;
-  background-color: #34495e;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-.btn-close {
-  color: #ecf0f1;
 }
 
 .btn-close:hover {
