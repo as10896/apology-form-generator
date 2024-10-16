@@ -239,6 +239,13 @@ document.getElementById('downloadMeme').addEventListener('click', function () {
   link.download = `${playerName}道歉表.png`;
   link.href = canvas.toDataURL('image/png');
   link.click();
+  
+  // GA4 custom event tracking
+  gtag('event', 'download_image', {
+    event_category: 'engagement',
+    event_label: 'Download Image Button',
+    value: 1
+  });
 });
 
 // Initialize everything
