@@ -1,3 +1,18 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container {
+  flex: 1; /* Ensures content takes up the available space */
+}
+
 .custom-input {
   border: none;
   border-bottom: 1px solid #ccc;
@@ -135,6 +150,9 @@ footer {
   background-color: #333;
   color: #ddd;
   padding: 20px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
 
 footer a {
