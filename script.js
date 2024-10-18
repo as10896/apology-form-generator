@@ -239,12 +239,48 @@ document.getElementById('downloadMeme').addEventListener('click', function () {
   link.download = `${playerName}道歉表.png`;
   link.href = canvas.toDataURL('image/png');
   link.click();
-  
+
   // GA4 custom event tracking
   gtag('event', 'download_image', {
     event_category: 'engagement',
     event_label: 'Download Image Button',
     value: 1
+  });
+});
+
+// Custom GA event tracking
+document.getElementById('noteLink').addEventListener('click', function () {
+  gtag('event', 'click', {
+    event_category: 'Footer',
+    event_label: 'Note'
+  });
+});
+
+document.getElementById('demoLink').addEventListener('click', function () {
+  gtag('event', 'click', {
+    event_category: 'Footer',
+    event_label: 'Demo'
+  });
+});
+
+document.getElementById('codeLink').addEventListener('click', function () {
+  gtag('event', 'click', {
+    event_category: 'Footer',
+    event_label: 'Code'
+  });
+});
+
+document.getElementById('githubNoteLink').addEventListener('click', function () {
+  gtag('event', 'click', {
+    event_category: 'Note',
+    event_label: 'GitHub Repo'
+  });
+});
+
+document.getElementById('pttNoteLink').addEventListener('click', function () {
+  gtag('event', 'click', {
+    event_category: 'Note',
+    event_label: 'PTT Article'
   });
 });
 
