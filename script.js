@@ -1,6 +1,7 @@
 let uploadedImage;
 let checkboxCounter = 7;
 let checkboxMarkedPath, checkboxBlankPath;
+let sortableInstance;
 
 // Predefined default reasons
 const defaultReasons = [
@@ -18,7 +19,7 @@ function preloadCheckboxIcons() {
   checkboxBlankPath = createPathFromSVG('M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z');
   injectDefaultReasons();
   updatePreview();
-  initSortable();
+  initSortable();  // Initialize sortable at the start
 }
 
 // Create Path2D from SVG data
@@ -27,9 +28,13 @@ function createPathFromSVG(svgPath) {
 }
 
 // Function to add drag-and-drop sorting with Sortable.js
+// Mobile-specific: Ensuring sortable reinitializes properly for mobile devices after adding/removing checkboxes
 function initSortable() {
   const container = document.getElementById('checkboxContainer');
-  Sortable.create(container, {
+  if (sortableInstance) {
+    sortableInstance.destroy();  // Remove previous sortable instance to avoid conflicts
+  }
+  sortableInstance = new Sortable(container, {
     handle: '.drag-handle',
     animation: 150,
     onEnd: updatePreview // Trigger preview update after sorting
@@ -45,6 +50,7 @@ function injectDefaultReasons() {
 }
 
 // Add checkbox dynamically
+// Mobile-specific: Reinitializing sortable after adding a new checkbox to ensure touch-based sorting works
 function addCheckbox(container, labelText = '新選項', id = `reason${checkboxCounter}`) {
   const newCheckbox = document.createElement('div');
   newCheckbox.classList.add('form-check', 'd-flex', 'align-items-center');
@@ -67,13 +73,16 @@ function addCheckbox(container, labelText = '新選項', id = `reason${checkboxC
   });
 
   updatePreview();
+  initSortable(); // Reinitialize sortable after adding a new checkbox
 }
 
 // Remove checkbox dynamically
+// Mobile-specific: Reinitializing sortable after removing a checkbox to ensure touch-based sorting remains functional
 function removeCheckbox(element) {
   const container = document.getElementById('checkboxContainer');
   container.removeChild(element.parentElement);
   updatePreview(); // Update preview when checkbox is removed
+  initSortable();  // Reinitialize sortable after removing a checkbox
 }
 
 // Handle image upload
@@ -94,7 +103,6 @@ document.getElementById('uploadPhoto').addEventListener('change', function (even
 document.getElementById('addCheckbox').addEventListener('click', function () {
   const container = document.getElementById('checkboxContainer');
   addCheckbox(container);
-  initSortable(); // Re-initialize sortable for new checkbox
 });
 
 // Add event listeners for input updates
