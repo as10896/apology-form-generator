@@ -42,8 +42,9 @@ h5 {
 
 .form-check-input {
   cursor: pointer;
-  width: 1.5em;
+  width: 1.3em;
   height: 1.5em;
+  flex-shrink: 0;
 }
 
 #addCheckbox {
@@ -97,7 +98,7 @@ canvas {
 
 .drag-handle {
   cursor: grab;
-  margin-right: 10px;
+  margin-right: 5px;
   color: #888;
 }
 
