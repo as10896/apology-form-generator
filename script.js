@@ -1,5 +1,4 @@
 let uploadedImage;
-let checkboxCounter = 7;
 let checkboxMarkedPath, checkboxBlankPath;
 let sortableInstance;
 
@@ -44,14 +43,14 @@ function initSortable() {
 // Inject default reasons dynamically
 function injectDefaultReasons() {
   const container = document.getElementById('checkboxContainer');
-  defaultReasons.forEach((reason, index) => {
-    addCheckbox(container, reason, `reason${index + 1}`);
+  defaultReasons.forEach((reason) => {
+    addCheckbox(container, reason);
   });
 }
 
 // Add checkbox dynamically
 // Mobile-specific: Reinitializing sortable after adding a new checkbox to ensure touch-based sorting works
-function addCheckbox(container, labelText = '新選項', id = `reason${checkboxCounter}`) {
+function addCheckbox(container, labelText = '新選項') {
   const newCheckbox = document.createElement('div');
   newCheckbox.classList.add('form-check', 'd-flex', 'align-items-center');
   newCheckbox.innerHTML = `
@@ -60,12 +59,11 @@ function addCheckbox(container, labelText = '新選項', id = `reason${checkboxC
         <path d="M7 17h2v-2H7v2zm0-4h2v-2H7v2zm0-4h2V7H7v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V7h-2v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V7h-2v2z"/>
       </svg>
     </span>
-    <input class="form-check-input mx-2" type="checkbox" id="${id}">
+    <input class="form-check-input mx-2" type="checkbox">
     <input type="text" class="form-check-label custom-input" value="${labelText}">
     <i class="fas fa-trash-alt ms-2 delete-checkbox" onclick="removeCheckbox(this)"></i>
   `;
   container.appendChild(newCheckbox);
-  checkboxCounter++;
 
   // Update preview when checkbox changes
   newCheckbox.querySelectorAll('input').forEach(input => {

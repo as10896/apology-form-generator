@@ -202,6 +202,11 @@ footer .list-inline-item a {
   text-decoration: underline;
 }
 
+.btn-close {
+  top: 10px;
+  right: 10px;
+}
+
 .btn-close:hover {
   color: #ffffff;
 }
