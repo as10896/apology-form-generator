@@ -110,12 +110,10 @@ document.getElementById('addCheckbox').addEventListener('click', function () {
 
 // Adjust canvas height based on the number of checkboxes
 function adjustCanvasSize(reasonsCount) {
-  const baseHeight = 640;
-  const extraHeightPerRow = 50; // Additional height for each extra row
-  const baseRows = 3; // Default for 6 checkboxes
+  const baseHeight = 490;
+  const heightPerRow = 50;
   const rows = Math.ceil(reasonsCount / 2); // 2-column layout
-  const extraRows = rows - baseRows;
-  return baseHeight + (extraRows > 0 ? extraRows * extraHeightPerRow : 0);
+  return baseHeight + (rows * heightPerRow);
 }
 
 // Update preview on canvas
