@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -10,7 +11,7 @@ body {
 }
 
 .container {
-  flex: 1; /* Ensures content takes up the available space */
+  flex: 1;
 }
 
 .custom-input {
@@ -21,9 +22,8 @@ body {
   width: 100%;
   transition: border-color 0.3s;
 }
-
 .custom-input:focus {
-  border-color: #4CAF50;
+  border-color: #4caf50;
   outline: none;
 }
 
@@ -37,7 +37,6 @@ body {
 h3,
 h5 {
   color: #003366;
-  /* Dark blue color for headings */
 }
 
 .form-check-input {
@@ -48,8 +47,7 @@ h5 {
 }
 
 #addCheckbox {
-  background-color: #666666;
-  /* Dark grey for the "Add Checkbox" button */
+  background-color: #666;
   color: white;
   padding: 10px;
   border: none;
@@ -59,7 +57,6 @@ h5 {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 #addCheckbox:hover {
   background-color: #4d4d4d;
 }
@@ -74,7 +71,6 @@ h5 {
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
-
 .download-btn:hover {
   background-color: #166bb5;
 }
@@ -91,7 +87,6 @@ canvas {
   color: #b3b3b3;
   transition: color 0.3s ease;
 }
-
 .delete-checkbox:hover {
   color: red;
 }
@@ -100,7 +95,6 @@ canvas {
   cursor: grab;
   color: #888;
 }
-
 .drag-handle:hover {
   color: #000;
 }
@@ -120,25 +114,19 @@ canvas {
   color: #003366;
 }
 
-/* Responsive styling */
 @media (max-width: 768px) {
   .mb-lg-4 {
     margin-bottom: 20px !important;
   }
-
-  /* Reduce the padding for smaller screens */
   .editor-section {
     padding: 15px;
   }
-
-  /* Adjust button size for mobile screens */
   .download-btn {
     padding: 8px 16px;
     font-size: 14px;
   }
 }
 
-/* Responsive canvas styling */
 @media (max-width: 992px) {
   canvas {
     max-width: 100%;
@@ -154,29 +142,24 @@ footer {
   position: relative;
   bottom: 0;
 }
-
 footer a {
   color: #ddd;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 footer a:hover {
   color: #fff;
   text-decoration: underline;
 }
-
 footer .list-inline {
   padding: 0;
   margin: 0;
   text-align: center;
 }
-
 footer .list-inline-item a {
   font-size: 14px;
 }
 
-/* Modal Styling */
 .modal-content {
   background-color: #2c3e50;
   color: #ecf0f1;
@@ -185,41 +168,34 @@ footer .list-inline-item a {
   max-width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
 .modal-body {
   background-color: #2c3e50;
 }
-
 .modal-body a {
   color: #5a9bd5;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .modal-body a:hover {
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
-
 .btn-close {
   top: 10px;
   right: 10px;
 }
-
 .btn-close:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
 .checkbox-grid.single-column .form-check {
   width: 100%;
 }
-
 .checkbox-grid.two-columns {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
-
 @media (max-width: 768px) {
   .checkbox-grid.two-columns {
     grid-template-columns: 1fr;
@@ -227,14 +203,13 @@ footer .list-inline-item a {
 }
 
 .btn-group .btn-outline-secondary {
-  color: #666666;
-  border-color: #666666;
+  color: #666;
+  border-color: #666;
 }
-
 .btn-group .btn-outline-secondary:hover,
 .btn-check:checked + .btn-outline-secondary {
-  background-color: #666666;
-  border-color: #666666;
+  background-color: #666;
+  border-color: #666;
   color: white;
 }
 
