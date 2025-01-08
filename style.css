@@ -209,3 +209,37 @@ footer .list-inline-item a {
 .btn-close:hover {
   color: #ffffff;
 }
+
+.checkbox-grid.single-column .form-check {
+  width: 100%;
+}
+
+.checkbox-grid.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .checkbox-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-group .btn-outline-secondary {
+  color: #666666;
+  border-color: #666666;
+}
+
+.btn-group .btn-outline-secondary:hover,
+.btn-check:checked + .btn-outline-secondary {
+  background-color: #666666;
+  border-color: #666666;
+  color: white;
+}
+
+.btn-group .icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}

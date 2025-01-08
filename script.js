@@ -108,11 +108,26 @@ document.getElementById('addCheckbox').addEventListener('click', function () {
   document.getElementById(id).addEventListener('input', updatePreview);
 });
 
+function updateLayout() {
+  const container = document.getElementById('checkboxContainer');
+  const layout = document.querySelector('input[name="layoutBtn"]:checked').value;
+  
+  container.classList.remove('single-column', 'two-columns');
+  container.classList.add(layout === '1' ? 'single-column' : 'two-columns');
+  
+  updatePreview();
+}
+
+['oneColumnBtn', 'twoColumnBtn'].forEach(id => {
+  document.getElementById(id).addEventListener('change', updateLayout);
+});
+
 // Adjust canvas height based on the number of checkboxes
 function adjustCanvasSize(reasonsCount) {
   const baseHeight = 490;
   const heightPerRow = 50;
-  const rows = Math.ceil(reasonsCount / 2); // 2-column layout
+  const columnLayout = document.querySelector('input[name="layoutBtn"]:checked').value;
+  const rows = Math.ceil(reasonsCount / columnLayout);
   return baseHeight + (rows * heightPerRow);
 }
 
@@ -188,12 +203,13 @@ function updatePreview() {
   const reasonBaseY = apologyReasonY + 50;
   const reasonMargin = 50, iconSize = 20;
 
+  const columnLayout = document.querySelector('input[name="layoutBtn"]:checked').value;
   reasons.forEach((reason, index) => {
     const checkboxElement = reason.querySelector('input[type="checkbox"]');
     const labelText = reason.querySelector('input[type="text"]').value;
 
-    const x = index % 2 === 0 ? 45 : canvas.width / 2 + 10;
-    const y = reasonBaseY + Math.floor(index / 2) * reasonMargin;
+    const x = columnLayout === "1" ? 45 : (index % 2 === 0 ? 45 : canvas.width / 2 + 10);
+    const y = reasonBaseY + Math.floor(index / columnLayout) * reasonMargin;
 
     const iconY = y - iconSize / 2 - 9;
     ctx.save();
@@ -210,7 +226,7 @@ function updatePreview() {
   });
 
   // Draw declaration
-  const declarationY = reasonBaseY + Math.ceil(reasons.length / 2) * reasonMargin + 25;
+  const declarationY = reasonBaseY + Math.ceil(reasons.length / columnLayout) * reasonMargin + 25;
   const promise = document.getElementById('promise').value;
 
   const apologizerUnderline = apologizer || '　　　';
