@@ -260,11 +260,14 @@ document.getElementById('downloadMeme').addEventListener('click', function () {
   link.href = canvas.toDataURL('image/png');
   link.click();
 
+  const columnLayout = document.querySelector('input[name="layoutBtn"]:checked').value;
+  const reasonsCount = document.querySelectorAll('#checkboxContainer .form-check').length;
+
   // GA4 custom event tracking
   gtag('event', 'download_image', {
-    event_category: 'engagement',
-    event_label: 'Download Image Button',
-    value: 1
+    player_name: playerName,
+    reasons_count: reasonsCount,
+    column_layout: columnLayout
   });
 });
 
