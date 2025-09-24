@@ -313,6 +313,8 @@ document.getElementById('pttNoteLink').addEventListener('click', function () {
   const playerInput = document.getElementById('playerName');
   if (!aiBtn || !playerInput) return;
 
+  let currentAbortController = null;
+
   // Open confirm modal or prompt for player name
   aiBtn.addEventListener('click', () => {
     if (!playerInput.checkValidity()) {
@@ -327,17 +329,27 @@ document.getElementById('pttNoteLink').addEventListener('click', function () {
 
   // Confirm and call API
   const confirmBtn = document.getElementById('aiConfirmBtn');
+  const cancelBtn = document.getElementById('aiCancelBtn');
+  
   if (confirmBtn) {
     confirmBtn.addEventListener('click', async () => {
       const modalEl = document.getElementById('aiConfirmModal');
       const modal = bootstrap.Modal.getInstance(modalEl);
+      
+      // Create new AbortController for this request
+      currentAbortController = new AbortController();
+      
       try {
         confirmBtn.disabled = true;
         confirmBtn.textContent = '生成中...';
 
         const player = playerInput.value.trim();
         const url = `http://localhost:8000/apology?player=${encodeURIComponent(player)}`;
-        const res = await fetch(url, { method: 'GET' });
+        const res = await fetch(url, { 
+          method: 'GET',
+          signal: currentAbortController.signal
+        });
+        
         if (!res.ok) throw new Error('AI 服務回應錯誤');
         const data = await res.json();
         // data: { reasons: string[], guarantee: string }
@@ -352,14 +364,31 @@ document.getElementById('pttNoteLink').addEventListener('click', function () {
         promiseInput.value = data.guarantee || '';
 
         updatePreview();
+        
+        if (modal) modal.hide();
       } catch (err) {
+        if (err.name === 'AbortError') {
+          return; // Don't show error for cancelled requests
+        }
         console.error(err);
         alert('AI 生成失敗，請稍後再試');
       } finally {
         confirmBtn.disabled = false;
         confirmBtn.textContent = '確認';
-        if (modal) modal.hide();
+        currentAbortController = null;
       }
+    });
+  }
+
+  // Cancel button to abort request
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', () => {
+      if (currentAbortController) {
+        currentAbortController.abort();
+      }
+      const modalEl = document.getElementById('aiConfirmModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      if (modal) modal.hide();
     });
   }
 })();
