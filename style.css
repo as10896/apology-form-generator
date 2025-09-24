@@ -218,3 +218,13 @@ footer .list-inline-item a {
   height: 1em;
   vertical-align: -0.125em;
 }
+
+#aiConfirmModal .modal-title {
+  color: #ecf0f1;
+}
+
+@media (min-width: 576px) {
+  #aiGenerateBtn {
+    width: auto !important;
+  }
+}

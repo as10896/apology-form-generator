@@ -307,5 +307,96 @@ document.getElementById('pttNoteLink').addEventListener('click', function () {
   });
 });
 
+// AI button validation based on player name
+(function initAIGenerate() {
+  const aiBtn = document.getElementById('aiGenerateBtn');
+  const playerInput = document.getElementById('playerName');
+  if (!aiBtn || !playerInput) return;
+
+  // Open confirm modal or prompt for player name
+  aiBtn.addEventListener('click', () => {
+    if (!playerInput.checkValidity()) {
+      playerInput.reportValidity();
+      return;
+    }
+    const modalEl = document.getElementById('aiConfirmModal');
+    if (!modalEl) return;
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  });
+
+  // Confirm and call API
+  const confirmBtn = document.getElementById('aiConfirmBtn');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', async () => {
+      const modalEl = document.getElementById('aiConfirmModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      try {
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = '生成中...';
+
+        const player = playerInput.value.trim();
+        const url = `http://localhost:8000/apology?player=${encodeURIComponent(player)}`;
+        const res = await fetch(url, { method: 'GET' });
+        if (!res.ok) throw new Error('AI 服務回應錯誤');
+        const data = await res.json();
+        // data: { reasons: string[], guarantee: string }
+
+        // Replace reasons
+        const container = document.getElementById('checkboxContainer');
+        container.innerHTML = '';
+        (data.reasons || []).forEach((reason) => addCheckbox(container, reason));
+
+        // Replace guarantee
+        const promiseInput = document.getElementById('promise');
+        promiseInput.value = data.guarantee || '';
+
+        updatePreview();
+      } catch (err) {
+        console.error(err);
+        alert('AI 生成失敗，請稍後再試');
+      } finally {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = '確認';
+        if (modal) modal.hide();
+      }
+    });
+  }
+})();
+
+// GA4: Track AI actions
+(function trackAIEvents() {
+  const aiBtn = document.getElementById('aiGenerateBtn');
+  const cancelBtn = document.getElementById('aiCancelBtn');
+  const confirmBtn = document.getElementById('aiConfirmBtn');
+
+  if (aiBtn) {
+    aiBtn.addEventListener('click', () => {
+      const playerName = (document.getElementById('playerName')?.value || '').trim();
+      gtag('event', 'ai_generate_clicked', {
+        player_name: playerName || '(empty)',
+      });
+    });
+  }
+
+  if (cancelBtn) {
+    const playerName = (document.getElementById('playerName')?.value || '').trim();
+    cancelBtn.addEventListener('click', () => {
+      gtag('event', 'ai_generate_cancelled', {
+        player_name: playerName || '(empty)',
+      });
+    });
+  }
+
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      const playerName = (document.getElementById('playerName')?.value || '').trim();
+      gtag('event', 'ai_generate_confirmed', {
+        player_name: playerName || '(empty)',
+      });
+    });
+  }
+})();
+
 // Initialize everything
 preloadCheckboxIcons();
